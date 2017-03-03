@@ -1,0 +1,33 @@
+$project-blue: #004E89;
+$max-width: 1024px;
+
+
+@import 'https://fonts.googleapis.com/css?family=Karla';
+
+
+
+
+html 
+{
+    overflow-x: hidden;
+}
+
+body 
+{
+    font-family: 'Karla',  sans-serif;
+    margin: 0;
+    background-color: white;
+}
+
+a
+{
+    text-decoration: none;
+    color: inherit;
+    padding:0;
+
+}
+nav
+{
+
+}
+
