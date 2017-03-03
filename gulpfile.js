@@ -26,5 +26,7 @@ gulp.task('babel', () => {
         .pipe(rename(/\.es6\.js$/, '.min.js'))
         .pipe(gulp.dest('public/js'))
 
+    bs.reload()
+
 });
 
