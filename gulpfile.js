@@ -5,7 +5,7 @@ const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 
-gulp.task('default', () => {
+gulp.task('default', ['bundle'],() => {
 
     bs.init({
         server: {
@@ -13,7 +13,7 @@ gulp.task('default', () => {
         }
     });
 
-    gulp.watch(['./src/**/*.js','index.html'],['bundle'])
+    gulp.watch(['./src/**/*.js','index.html'],['watch-bundle'])
 
 
 });
@@ -31,11 +31,9 @@ gulp.task('bundle', () => {
         .pipe(buffer())
         .pipe(gulp.dest('./'));
 
-    bs.reload()
-
 });
 
-gulp.task('global-watch', ['bundle'],  (done) => {
+gulp.task('watch-bundle', ['bundle'],  (done) => {
     bs.reload();
     done();
 });
