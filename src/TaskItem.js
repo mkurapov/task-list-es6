@@ -4,7 +4,9 @@ export default class TaskItem {
     {
         this.id = id;
         this.title = title;
+        this.completed = false;
     }
+    
 }
 
 
