@@ -29,7 +29,7 @@ export default class TaskList {
                     this.toggleCompleted(taskId);
                     break;
                 case 'label':
-                    this.handleTaskChange(taskId, event.target);
+                   // this.handleTaskChange(taskId, event.target); //might implement later
                     break;
                 default:
             }
@@ -46,7 +46,7 @@ export default class TaskList {
 
         if (newTaskTitle)
         {
-            let newTaskID = helpers.getRandomId().toString(); //need to check if id exists
+            let newTaskID = helpers.getRandomId().toString(); //still need to check if id exists
             const newTask = new TaskItem(newTaskID, helpers.htmlEscape(newTaskTitle))
             this.tasks.push(newTask)
             this.inputField.value = '';
@@ -66,24 +66,25 @@ export default class TaskList {
         this.displayTasks()
     }
 
-    handleTaskChange(idToChange, label)
-    {
-        console.log(label);
-        // label.onchange = () => console.log('dog');
-        label.addEventListener('input', () => {
-
-            let newTitle = helpers.htmlEscape(label.textContent).trim();
-            this.tasks.forEach((task)=>{
-                if (task.id === idToChange) {
-                    task.title = newTitle;
-                }
-            })
-
-            label.textContent = newTitle;
-            this.saveTasks()
-        })
-
-    }
+    // handleTaskChange(idToChange, label)
+    // {
+    //     console.log(label);
+    //     // label.onchange = () => console.log('dog');
+    //     label.addEventListener('input', () => {
+    //
+    //         let newTitle = helpers.htmlEscape(label.textContent).trim();
+    //
+    //         this.tasks.forEach((task)=>{
+    //             if (task.id === idToChange) {
+    //                 task.title = newTitle;
+    //             }
+    //         })
+    //
+    //         label.textContent = newTitle;
+    //         this.saveTasks()
+    //     })
+    //
+    // }
 
     toggleCompleted(idToToggle)
     {
@@ -114,11 +115,14 @@ export default class TaskList {
 
     returnTaskTemplate(task)
     {
-        return `<li data-id="${task.id}">
+        return `<li class="${task.completed ? 'completed' : ''}" data-id="${task.id}">
                    <input class="toggle" type="checkbox" ${task.completed ? 'checked' : ''}>
-                   <label contenteditable>${task.title}</label>
+                   <label >${task.title}</label>
                    <button>Remove</button>
                 </li>`;
+
+        //label: contenteditable
+
     }
 
 

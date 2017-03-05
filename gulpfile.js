@@ -13,7 +13,7 @@ gulp.task('default', ['bundle'],() => {
         }
     });
 
-    gulp.watch(['./src/**/*.js','index.html'],['watch-bundle'])
+    gulp.watch(['./src/**/*.js','index.html', './css/**/*.scss'],['watch-bundle'])
 
 
 });
@@ -22,7 +22,7 @@ gulp.task('bundle', () => {
 
     var bundler = browserify('src/app.js');
     bundler.transform(babelify.configure({
-        presets: ["es2015"]
+        presets: ["es2015", "babili"]
     }));
 
     bundler.bundle()
@@ -37,6 +37,8 @@ gulp.task('watch-bundle', ['bundle'],  (done) => {
     bs.reload();
     done();
 });
+
+
 
 
 
