@@ -21,15 +21,12 @@ export default class TaskList {
         this.tasksElem.addEventListener('click', (event) => {
             const taskId = event.target.parentNode.getAttribute('data-id');
 
-            switch (event.target.localName) {
-                case 'button':
+            switch (event.target.className) {
+                case 'remove-button':
                     this.removeTask(taskId);
                     break;
-                case 'input':
+                case 'task-toggle':
                     this.toggleCompleted(taskId);
-                    break;
-                case 'label':
-                   // this.handleTaskChange(taskId, event.target); //might implement later
                     break;
                 default:
             }
@@ -37,7 +34,6 @@ export default class TaskList {
 
 
         this.addButton.addEventListener('click', this.addNewTask.bind(this))
-
     }
 
     addNewTask()
@@ -53,7 +49,6 @@ export default class TaskList {
             this.saveTasks()
             this.displayTasks()
         }
-
     }
 
     removeTask(idToRemove)
@@ -66,25 +61,6 @@ export default class TaskList {
         this.displayTasks()
     }
 
-    // handleTaskChange(idToChange, label)
-    // {
-    //     console.log(label);
-    //     // label.onchange = () => console.log('dog');
-    //     label.addEventListener('input', () => {
-    //
-    //         let newTitle = helpers.htmlEscape(label.textContent).trim();
-    //
-    //         this.tasks.forEach((task)=>{
-    //             if (task.id === idToChange) {
-    //                 task.title = newTitle;
-    //             }
-    //         })
-    //
-    //         label.textContent = newTitle;
-    //         this.saveTasks()
-    //     })
-    //
-    // }
 
     toggleCompleted(idToToggle)
     {
@@ -109,20 +85,16 @@ export default class TaskList {
         this.tasksElem.innerHTML = this.tasks.reduce((acc, task) => {
             return acc + this.returnTaskTemplate(task)
         },'');
-
     }
 
 
     returnTaskTemplate(task)
     {
         return `<li class="${task.completed ? 'completed' : ''}" data-id="${task.id}">
-                   <input class="toggle" type="checkbox" ${task.completed ? 'checked' : ''}>
-                   <label >${task.title}</label>
-                   <button>Remove</button>
+                   <input class="task-toggle" type="checkbox" ${task.completed ? 'checked' : ''}>
+                   <label class="task-title">${task.title}</label>
+                   <button class="remove-button">Remove</button>
                 </li>`;
-
-        //label: contenteditable
-
     }
 
 
