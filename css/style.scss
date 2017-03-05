@@ -1,7 +1,5 @@
 $project-grey: #a8a7b2;
-
 $max-width: 1024px;
-@import 'https://fonts.googleapis.com/css?family=Roboto';
 
 html 
 {
@@ -28,11 +26,8 @@ a
     flex-direction: column;
     margin: 30px auto 0 auto;
     max-width: 500px;
-
     font-family: 'Roboto';
     box-shadow: 0 10px 20px rgba(0,0,0,0.15), 0 6px 6px rgba(0,0,0,0.20);
-
-
 }
 .input-wrap
 {
